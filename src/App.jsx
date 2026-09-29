@@ -197,8 +197,14 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
-      
+    <div className="min-h-screen bg-transparent text-slate-100 flex flex-col font-sans relative z-0">
+      {/* Aurora Background */}
+      <div className="aurora-bg">
+        <div className="aurora-orb aurora-orb-1"></div>
+        <div className="aurora-orb aurora-orb-2"></div>
+        <div className="aurora-orb aurora-orb-3"></div>
+      </div>
+
       {/* Top Navbar */}
       <Navbar
         searchTerm={searchTerm}

@@ -150,13 +150,13 @@ export default function InteractiveSandbox({ project }) {
 
   if (demoType === 'ai-evaluator') {
     return (
-      <div className="p-6 rounded-2xl bg-slate-900/90 border border-purple-500/30 space-y-6">
+      <div className="p-6 rounded-2xl bg-slate-900/90 border border-green-500/30 space-y-6">
         <div className="flex items-center justify-between border-b border-slate-800 pb-4">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-purple-400" />
+            <Sparkles className="w-5 h-5 text-green-400" />
             <h4 className="text-base font-bold text-white font-heading">SmartEval AI Answer Sheet Grading Simulator</h4>
           </div>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-green-500/20 text-green-300 border border-green-500/30">
             Vision Transformer OCR
           </span>
         </div>
@@ -167,7 +167,7 @@ export default function InteractiveSandbox({ project }) {
             <button
               onClick={() => setSelectedScript('q1')}
               className={`p-3 rounded-xl text-left border text-xs transition ${
-                selectedScript === 'q1' ? 'bg-purple-950/60 border-purple-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400'
+                selectedScript === 'q1' ? 'bg-green-950/60 border-green-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400'
               }`}
             >
               <div className="font-bold">Q1. Vision Transformers Architecture</div>
@@ -177,7 +177,7 @@ export default function InteractiveSandbox({ project }) {
             <button
               onClick={() => setSelectedScript('q2')}
               className={`p-3 rounded-xl text-left border text-xs transition ${
-                selectedScript === 'q2' ? 'bg-purple-950/60 border-purple-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400'
+                selectedScript === 'q2' ? 'bg-green-950/60 border-green-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400'
               }`}
             >
               <div className="font-bold">Q2. TCP vs UDP Protocol Differences</div>
@@ -189,7 +189,7 @@ export default function InteractiveSandbox({ project }) {
         <button
           onClick={handleRunAiEvaluation}
           disabled={evaluating}
-          className="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition"
+          className="w-full py-3 bg-gradient-to-r from-green-600 to-indigo-600 hover:from-green-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition"
         >
           {evaluating ? (
             <>
@@ -205,10 +205,10 @@ export default function InteractiveSandbox({ project }) {
         </button>
 
         {evalResult && (
-          <div className="p-5 rounded-2xl bg-slate-950 border border-purple-500/40 space-y-4 animate-fade-in">
+          <div className="p-5 rounded-2xl bg-slate-950 border border-green-500/40 space-y-4 animate-fade-in">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <div>
-                <span className="text-[10px] text-purple-400 font-mono">AI Evaluation Scorecard</span>
+                <span className="text-[10px] text-green-400 font-mono">AI Evaluation Scorecard</span>
                 <div className="text-xl font-extrabold text-white">{evalResult.score}</div>
               </div>
               <div className="text-right">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Code2, Search, PlusCircle, Scale, Bookmark, Heart, Layers } from 'lucide-react';
+import { Sparkles, Code2, Search, PlusCircle, Scale, Bookmark, Hexagon } from 'lucide-react';
 
 export default function Navbar({
   searchTerm,
@@ -12,97 +12,96 @@ export default function Navbar({
   totalProjectsCount
 }) {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-[#090d16]/90 backdrop-blur-md transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        
-        {/* Brand Logo */}
-        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
-            <Code2 className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-extrabold tracking-tight text-white text-lg font-heading">
-                GIT CLUB
-              </span>
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                CHARUSAT
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-400 font-mono -mt-0.5">Project Showcase Hub</p>
-          </div>
-        </div>
-
-        {/* Search Bar in Header */}
-        <div className="hidden md:flex items-center flex-1 max-w-md mx-4">
-          <div className="relative w-full">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search projects by name, tech (React, Python...), author..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-slate-900/90 border border-slate-800 rounded-full pl-10 pr-12 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition"
-            />
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-[10px] font-mono text-slate-500 bg-slate-800/80 px-1.5 py-0.5 rounded border border-slate-700">
-              <span>⌘K</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 pointer-events-none">
+      <header className="w-full max-w-6xl rounded-full glass-panel border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] pointer-events-auto transition-all duration-300 hover:border-emerald-500/30">
+        <div className="px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           
-          {/* Compare Button */}
-          <button
-            onClick={onOpenCompareModal}
-            className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-              compareCount > 0
-                ? 'bg-purple-950/60 text-purple-300 border border-purple-500/40 hover:bg-purple-900/60'
-                : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-slate-200 hover:bg-slate-800'
-            }`}
-            title="Compare Projects Side-by-Side"
-          >
-            <Scale className="w-3.5 h-3.5 text-purple-400" />
-            <span className="hidden sm:inline">Compare</span>
-            {compareCount > 0 && (
-              <span className="w-5 h-5 rounded-full bg-purple-600 text-white text-[10px] flex items-center justify-center font-bold">
-                {compareCount}
-              </span>
-            )}
-          </button>
+          {/* Brand Logo */}
+          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-400 via-emerald-500 to-green-600 flex items-center justify-center shadow-lg group-hover:rotate-90 transition-transform duration-500">
+              <Hexagon className="w-6 h-6 text-white" />
+            </div>
+            <div className="hidden sm:block">
+              <div className="flex items-center gap-2">
+                <span className="font-extrabold tracking-tighter text-white text-xl font-heading">
+                  HACK<span className="text-emerald-400">HUB</span>
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  CHARUSAT
+                </span>
+              </div>
+            </div>
+          </div>
 
-          {/* Bookmarks Counter */}
-          <button
-            onClick={onOpenBookmarksModal}
-            className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-              bookmarkCount > 0
-                ? 'bg-indigo-950/60 text-indigo-300 border border-indigo-500/40 hover:bg-indigo-900/60'
-                : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-slate-200 hover:bg-slate-800'
-            }`}
-            title="View Bookmarked Projects"
-          >
-            <Bookmark className="w-3.5 h-3.5 text-indigo-400 fill-indigo-400/20" />
-            <span className="hidden sm:inline">Saved</span>
-            {bookmarkCount > 0 && (
-              <span className="w-5 h-5 rounded-full bg-indigo-600 text-white text-[10px] flex items-center justify-center font-bold">
-                {bookmarkCount}
-              </span>
-            )}
-          </button>
+          {/* Search Bar in Header */}
+          <div className="hidden md:flex items-center flex-1 max-w-md mx-4">
+            <div className="relative w-full group">
+              <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-emerald-400/70 group-focus-within:text-emerald-400 transition-colors" />
+              <input
+                type="text"
+                placeholder="Search projects, tech stacks, or hackers..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-full pl-11 pr-12 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 transition-all shadow-inner"
+              />
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-[10px] font-mono text-slate-400 bg-slate-800/80 px-2 py-1 rounded-full border border-slate-700">
+                <span>⌘K</span>
+              </div>
+            </div>
+          </div>
 
-          {/* Submit Project CTA */}
-          <button
-            onClick={onOpenSubmitModal}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 active:scale-95 transition"
-          >
-            <PlusCircle className="w-4 h-4" />
-            <span>Submit Project</span>
-          </button>
+          {/* Right Actions */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            
+            {/* Compare Button */}
+            <button
+              onClick={onOpenCompareModal}
+              className={`relative flex items-center gap-2 px-3 py-2 rounded-full text-xs font-bold transition-all ${
+                compareCount > 0
+                  ? 'bg-green-500/20 text-green-300 border border-green-500/50 hover:bg-green-500/30 glow-green'
+                  : 'bg-slate-800/50 text-slate-400 border border-slate-700/50 hover:text-white hover:bg-slate-700/50'
+              }`}
+            >
+              <Scale className="w-4 h-4 text-green-400" />
+              <span className="hidden lg:inline">Compare</span>
+              {compareCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-green-500 text-white text-[10px] flex items-center justify-center shadow-lg border border-slate-900">
+                  {compareCount}
+                </span>
+              )}
+            </button>
+
+            {/* Bookmarks Counter */}
+            <button
+              onClick={onOpenBookmarksModal}
+              className={`relative flex items-center gap-2 px-3 py-2 rounded-full text-xs font-bold transition-all ${
+                bookmarkCount > 0
+                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 hover:bg-cyan-500/30 glow-cyan'
+                  : 'bg-slate-800/50 text-slate-400 border border-slate-700/50 hover:text-white hover:bg-slate-700/50'
+              }`}
+            >
+              <Bookmark className="w-4 h-4 text-cyan-400 fill-cyan-400/20" />
+              <span className="hidden lg:inline">Saved</span>
+              {bookmarkCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-cyan-500 text-white text-[10px] flex items-center justify-center shadow-lg border border-slate-900">
+                  {bookmarkCount}
+                </span>
+              )}
+            </button>
+
+            {/* Submit Project CTA */}
+            <button
+              onClick={onOpenSubmitModal}
+              className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-slate-900 text-sm font-bold shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] hover:scale-105 active:scale-95 transition-all"
+            >
+              <PlusCircle className="w-4 h-4 group-hover:rotate-90 transition-transform" />
+              <span className="hidden sm:inline">Submit</span>
+            </button>
+
+          </div>
 
         </div>
-
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }

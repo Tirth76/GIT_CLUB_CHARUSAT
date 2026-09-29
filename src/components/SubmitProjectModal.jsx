@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, PlusCircle, Sparkles, Code2, Check, ExternalLink } from 'lucide-react';
+import { X, PlusCircle, Sparkles, Code2, Check, ExternalLink, Hexagon } from 'lucide-react';
 import GithubIcon from './GithubIcon';
 import confetti from 'canvas-confetti';
 import { DOMAINS } from '../data/projectsData';
@@ -63,34 +63,42 @@ export default function SubmitProjectModal({ onClose, onSubmitProject }) {
     setSubmitted(true);
 
     confetti({
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.6 }
+      particleCount: 150,
+      spread: 100,
+      origin: { y: 0.6 },
+      colors: ['#22d3ee', '#d946ef', '#a855f7']
     });
 
     setTimeout(() => {
       onClose();
-    }, 1800);
+    }, 2000);
   };
 
+  const inputClass = "w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all hover:border-white/20 shadow-inner";
+  const labelClass = "text-xs text-slate-300 font-bold block mb-1.5 uppercase tracking-wider";
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-2xl flex flex-col rounded-3xl glass-panel border border-slate-700/80 shadow-2xl overflow-hidden text-slate-100 my-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/70 backdrop-blur-xl animate-fade-in">
+      <div className="relative w-full max-w-2xl flex flex-col rounded-3xl glass-card border border-white/20 shadow-[0_0_50px_rgba(34,211,238,0.15)] overflow-hidden text-slate-100 my-auto">
         
+        {/* Decorative Aurora glow inside modal */}
+        <div className="absolute top-0 right-0 w-[400px] h-[300px] bg-cyan-500/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[300px] bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-800 bg-slate-900/90">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white">
-              <PlusCircle className="w-5 h-5" />
+        <div className="flex items-center justify-between p-6 sm:p-8 border-b border-white/10 bg-black/40 backdrop-blur-md relative z-10">
+          <div className="flex items-center gap-4">
+            <div className="p-3 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white shadow-[0_0_20px_rgba(34,211,238,0.4)]">
+              <Hexagon className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white font-heading">Submit Your Git Club Project</h3>
-              <p className="text-xs text-slate-400">Share your technical creation with 130+ CHARUSAT builders</p>
+              <h3 className="text-xl sm:text-2xl font-black text-white font-heading tracking-wide">Submit Hackathon Project</h3>
+              <p className="text-sm text-cyan-300 font-mono mt-1">Deploy your code to the 150+ participant matrix</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition"
+            className="p-2.5 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-all border border-transparent hover:border-white/20 hover:rotate-90"
           >
             <X className="w-5 h-5" />
           </button>
@@ -98,159 +106,159 @@ export default function SubmitProjectModal({ onClose, onSubmitProject }) {
 
         {/* Form Body */}
         {!submitted ? (
-          <form onSubmit={handleSubmit} className="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
+          <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6 max-h-[75vh] overflow-y-auto relative z-10 custom-scrollbar">
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">Project Title *</label>
+                <label className={labelClass}>Project Title *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. ExamSync CHARUSAT"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className={inputClass}
                 />
               </div>
 
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">Domain / Category *</label>
+                <label className={labelClass}>Domain / Category *</label>
                 <select
                   value={formData.domain}
                   onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className={`${inputClass} appearance-none cursor-pointer`}
                 >
                   {DOMAINS.filter(d => d !== 'All Projects').map(d => (
-                    <option key={d} value={d}>{d}</option>
+                    <option key={d} value={d} className="bg-slate-900">{d}</option>
                   ))}
                 </select>
               </div>
             </div>
 
             <div>
-              <label className="text-xs text-slate-300 font-medium block mb-1">Short Description *</label>
+              <label className={labelClass}>Short Description *</label>
               <textarea
                 required
                 rows={2}
                 placeholder="What does this project do in 1-2 sentences?"
                 value={formData.shortDesc}
                 onChange={(e) => setFormData({ ...formData, shortDesc: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                className={inputClass}
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">The Problem Solved</label>
+                <label className={labelClass}>The Problem Solved</label>
                 <textarea
-                  rows={2}
+                  rows={3}
                   placeholder="Why did you build this?"
                   value={formData.problem}
                   onChange={(e) => setFormData({ ...formData, problem: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className={inputClass}
                 />
               </div>
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">Your Solution</label>
+                <label className={labelClass}>Your Solution</label>
                 <textarea
-                  rows={2}
+                  rows={3}
                   placeholder="How does your project solve it?"
                   value={formData.solution}
                   onChange={(e) => setFormData({ ...formData, solution: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className={inputClass}
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-xs text-slate-300 font-medium block mb-1">Tech Stack (comma separated)</label>
+              <label className={labelClass}>Tech Stack (comma separated)</label>
               <input
                 type="text"
                 placeholder="React, Node.js, Python, TailwindCSS..."
                 value={formData.techStack}
                 onChange={(e) => setFormData({ ...formData, techStack: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 font-mono"
+                className={`${inputClass} font-mono`}
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">GitHub Repository Link</label>
+                <label className={labelClass}>GitHub Repository Link</label>
                 <input
                   type="url"
                   placeholder="https://github.com/yourusername/project"
                   value={formData.github}
                   onChange={(e) => setFormData({ ...formData, github: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className={inputClass}
                 />
               </div>
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">Live Demo / Deployed Link</label>
+                <label className={labelClass}>Live Demo / Deployed Link</label>
                 <input
                   type="url"
                   placeholder="https://yourproject.vercel.app"
                   value={formData.demo}
                   onChange={(e) => setFormData({ ...formData, demo: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className={inputClass}
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-slate-800">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-6 border-t border-white/10">
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">Your Name *</label>
+                <label className={labelClass}>Your Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Om Rashiya"
                   value={formData.authorName}
                   onChange={(e) => setFormData({ ...formData, authorName: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className={inputClass}
                 />
               </div>
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">Year & Branch</label>
+                <label className={labelClass}>Year & Branch</label>
                 <input
                   type="text"
                   placeholder="e.g. 3rd Year CSE"
                   value={formData.year}
                   onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className={inputClass}
                 />
               </div>
               <div>
-                <label className="text-xs text-slate-300 font-medium block mb-1">Institute</label>
+                <label className={labelClass}>Institute</label>
                 <select
                   value={formData.institute}
                   onChange={(e) => setFormData({ ...formData, institute: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className={`${inputClass} appearance-none cursor-pointer`}
                 >
-                  <option value="CSPIT">CSPIT</option>
-                  <option value="DEPSTAR">DEPSTAR</option>
-                  <option value="CMPICA">CMPICA</option>
+                  <option value="CSPIT" className="bg-slate-900">CSPIT</option>
+                  <option value="DEPSTAR" className="bg-slate-900">DEPSTAR</option>
+                  <option value="CMPICA" className="bg-slate-900">CMPICA</option>
                 </select>
               </div>
             </div>
 
             {/* Submit CTA */}
-            <div className="pt-4">
+            <div className="pt-6">
               <button
                 type="submit"
-                className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition"
+                className="w-full py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-emerald-600 hover:from-cyan-400 hover:via-blue-400 hover:to-emerald-500 text-white font-black text-sm uppercase tracking-widest rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.4)] flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
               >
-                <Sparkles className="w-4 h-4" /> Publish Project to Git Club Showcase
+                <Sparkles className="w-5 h-5" /> Launch Project To Matrix
               </button>
             </div>
 
           </form>
         ) : (
-          <div className="p-10 text-center space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
-              <Check className="w-8 h-8" />
+          <div className="p-12 text-center space-y-6 relative z-10">
+            <div className="w-24 h-24 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border-4 border-emerald-500/40 shadow-[0_0_30px_rgba(16,185,129,0.4)] animate-bounce">
+              <Check className="w-12 h-12" />
             </div>
-            <h4 className="text-xl font-black text-white font-heading">Project Published Successfully!</h4>
-            <p className="text-xs text-slate-300">
-              Your project is now live in the Git Club CHARUSAT Showcase. Other participants can now upvote and explore your work.
+            <h4 className="text-3xl font-black text-white font-heading drop-shadow-lg">Initialization Complete!</h4>
+            <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+              Your project is now live in the Git Club CHARUSAT Showcase Matrix. Prepare for incoming traffic from 150+ elite hackers.
             </p>
           </div>
         )}

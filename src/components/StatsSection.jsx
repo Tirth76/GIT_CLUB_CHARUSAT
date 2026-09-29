@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Shield, Award, Cpu, GitBranch, Layers, Sparkles } from 'lucide-react';
+import { Hexagon, Sparkles } from 'lucide-react';
 
 export default function StatsSection() {
   const domainsBreakdown = [
@@ -11,57 +11,66 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="my-16 py-12 px-6 sm:px-8 rounded-3xl glass-panel border border-slate-800 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    <section className="my-20 py-16 px-6 sm:px-10 rounded-3xl glass-card relative overflow-hidden group">
+      {/* Aurora Ambient Glow */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-500/20 blur-[120px] rounded-full pointer-events-none group-hover:bg-cyan-500/30 transition-colors duration-700" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-emerald-500/20 blur-[120px] rounded-full pointer-events-none group-hover:bg-emerald-500/30 transition-colors duration-700" />
+      
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
         {/* Left Side: About Git Club CHARUSAT */}
-        <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-            <span>GIT CLUB CHARUSAT • ECOSYSTEM MATRIX</span>
+        <div className="space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-cyan-400/30 text-cyan-300 text-xs font-bold tracking-widest uppercase backdrop-blur-md">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span>Hackathon Ecosystem Matrix</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-heading leading-tight">
-            Building Practical Software That Solves Real Campus Requirements.
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-heading leading-tight drop-shadow-xl">
+            Engineered To <span className="gradient-text">Dominate</span> Real-World Problems.
           </h2>
 
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-            Git Club CHARUSAT brings together over 130+ passionate student engineers across <strong className="text-white">CSPIT</strong> (Chandubhai S Patel Institute of Technology), <strong className="text-white">DEPSTAR</strong> (Devang Patel Institute of Advance Technology & Research), and <strong className="text-white">CMPICA</strong> (Srimad Rajchandra Institute of Management & Computer Application).
+          <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-sans font-light">
+            Git Club CHARUSAT unites 150+ visionary hackers across <strong className="text-white font-bold">CSPIT</strong>, <strong className="text-white font-bold">DEPSTAR</strong>, and <strong className="text-white font-bold">CMPICA</strong>. We don't just write code; we build the future.
           </p>
 
-          <div className="grid grid-cols-2 gap-3 pt-2">
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-              <div className="text-indigo-400 font-mono text-xs font-bold mb-0.5">3 INSTITUTES</div>
-              <div className="text-xs text-slate-300">CSPIT • DEPSTAR • CMPICA</div>
+          <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="p-5 rounded-2xl bg-black/40 border border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-colors backdrop-blur-md group/box">
+              <div className="text-cyan-400 font-mono text-xs font-bold mb-1 group-hover/box:text-cyan-300">3 INSTITUTES</div>
+              <div className="text-sm text-slate-200 font-semibold">CSPIT • DEPSTAR • CMPICA</div>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
-              <div className="text-emerald-400 font-mono text-xs font-bold mb-0.5">OPEN SOURCE</div>
-              <div className="text-xs text-slate-300">100% Student Repositories</div>
+            <div className="p-5 rounded-2xl bg-black/40 border border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-colors backdrop-blur-md group/box">
+              <div className="text-emerald-400 font-mono text-xs font-bold mb-1 group-hover/box:text-emerald-300">OPEN SOURCE</div>
+              <div className="text-sm text-slate-200 font-semibold">100% Student Repositories</div>
             </div>
           </div>
         </div>
 
         {/* Right Side: Domain Distribution Visual */}
-        <div className="p-6 rounded-2xl bg-slate-950/90 border border-slate-800/80 space-y-4">
-          <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono flex items-center justify-between">
-            <span>Domain Distribution</span>
-            <span className="text-indigo-400">Total 24+ Projects</span>
+        <div className="p-8 rounded-3xl glass-panel border border-white/10 space-y-6 shadow-2xl relative">
+          
+          <div className="absolute -top-4 -right-4 text-white/5 pointer-events-none rotate-12">
+             <Hexagon className="w-48 h-48" strokeWidth={1} />
+          </div>
+
+          <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest font-mono flex items-center justify-between border-b border-white/10 pb-4">
+            <span>Domain Focus</span>
+            <span className="text-cyan-400">Total 24+ Projects</span>
           </h4>
 
-          <div className="space-y-3">
-            {domainsBreakdown.map((item) => (
-              <div key={item.domain} className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-200 font-medium">{item.domain}</span>
-                  <span className="text-slate-400 font-mono">{item.count} ({item.pct})</span>
+          <div className="space-y-5">
+            {domainsBreakdown.map((item, i) => (
+              <div key={item.domain} className="space-y-2 group/bar">
+                <div className="flex items-center justify-between text-xs sm:text-sm">
+                  <span className="text-slate-200 font-semibold group-hover/bar:text-white transition-colors">{item.domain}</span>
+                  <span className="text-cyan-300 font-mono font-bold">{item.count} ({item.pct})</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-slate-900 overflow-hidden border border-slate-800">
+                <div className="w-full h-3 rounded-full bg-black/50 overflow-hidden border border-white/5 shadow-inner">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+                    className={`h-full rounded-full bg-gradient-to-r ${i % 2 === 0 ? 'from-cyan-500 to-blue-500' : 'from-emerald-500 to-green-500'} relative`}
                     style={{ width: item.pct }}
-                  />
+                  >
+                    <div className="absolute top-0 right-0 bottom-0 w-10 bg-gradient-to-r from-transparent to-white/30" />
+                  </div>
                 </div>
               </div>
             ))}
