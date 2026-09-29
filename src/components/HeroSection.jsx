@@ -3,7 +3,7 @@ import { Sparkles, Code2, Users, Rocket, ShieldCheck, ArrowRight, Flame, Termina
 
 export default function HeroSection({ totalProjects, totalUpvotes, onOpenSubmitModal, onScrollToProjects }) {
   return (
-    <section className="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-32 flex flex-col items-center justify-center text-center">
+    <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32 flex flex-col items-center justify-center text-center">
       
       {/* Decorative Aurora Elements Specific to Hero */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none z-0">
